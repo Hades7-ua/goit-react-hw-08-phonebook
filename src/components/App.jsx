@@ -3,6 +3,7 @@ import { nanoid } from 'nanoid';
 import ContactForm from './Contacts/ContactForm';
 import Filter from './Filter/FilterContacts';
 import ContactList from './ContactsList/ContactList';
+import { AppHeader, AppContent, AppContainer } from './App.styled';
 
 export class App extends Component {
   state = {
@@ -11,14 +12,22 @@ export class App extends Component {
   };
 
   addContact = ({ name, number }) => {
-    const newContact = {
-      id: nanoid(),
-      name,
-      number,
-    };
-    this.setState(prevState => ({
-      contacts: [...prevState.contacts, newContact],
-    }));
+    const isNameThis = this.state.contacts.find(
+      contact => contact.name === name
+    );
+
+    if (isNameThis) {
+      alert(`${name} is already in contacts.`);
+    } else {
+      const newContact = {
+        id: nanoid(),
+        name,
+        number,
+      };
+      this.setState(prevState => ({
+        contacts: [...prevState.contacts, newContact],
+      }));
+    }
   };
 
   handleFilterChange = e => {
@@ -31,19 +40,29 @@ export class App extends Component {
       contact.name.toLowerCase().includes(filter.toLowerCase())
     );
   };
+  handleDelete = contactId => {
+    this.setState(prevState => ({
+      contacts: prevState.contacts.filter(contact => contact.id !== contactId),
+    }));
+  };
 
   render() {
     const { filter } = this.state;
     const filteredContacts = this.getFilteredContacts();
 
     return (
-      <div>
-        <h1>Phonebook</h1>
-        <ContactForm onSubmit={this.addContact} />
-        <h2>Contacts</h2>
-        <Filter value={filter} onChange={this.handleFilterChange} />
-        <ContactList contacts={filteredContacts} />
-      </div>
+      <AppContainer>
+        <AppHeader>Phonebook</AppHeader>
+        <AppContent>
+          <ContactForm onSubmit={this.addContact} />
+          <h2>Contacts</h2>
+          <Filter value={filter} onChange={this.handleFilterChange} />
+          <ContactList
+            contacts={filteredContacts}
+            onDeleteContact={this.handleDelete}
+          />
+        </AppContent>
+      </AppContainer>
     );
   }
 }
