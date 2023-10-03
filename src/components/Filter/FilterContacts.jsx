@@ -1,4 +1,4 @@
-const FilterContacts = ({ value, onChange }) => {
+export const FilterContacts = ({ value, onChange }) => {
   return (
     <label>
       Find by name{' '}

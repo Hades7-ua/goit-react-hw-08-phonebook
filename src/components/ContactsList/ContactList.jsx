@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ContactList = ({ contacts }) => {
+export const ContactList = ({ contacts }) => {
   return (
     <ul>
       {contacts.map(contact => (
