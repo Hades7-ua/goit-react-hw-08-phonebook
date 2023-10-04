@@ -14,7 +14,7 @@ export class App extends Component {
   addContact = ({ name, number }) => {
     const toLowerCaseName = name.toLowerCase();
     const isNameThis = this.state.contacts.find(
-      contact => contact.toLowerCaseName() === toLowerCaseName()
+      contact => contact.name.toLowerCase() === toLowerCaseName
     );
 
     if (isNameThis) {
