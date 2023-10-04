@@ -1,9 +1,10 @@
+import { FilterWrapper, FilterHeader } from './FilterContacts.styled';
 export const FilterContacts = ({ value, onChange }) => {
   return (
-    <label>
-      Find by name{' '}
+    <FilterWrapper>
+      <FilterHeader>Find by name</FilterHeader>{' '}
       <input type="text" name="filter" value={value} onChange={onChange} />
-    </label>
+    </FilterWrapper>
   );
 };
 
