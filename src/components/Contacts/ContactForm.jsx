@@ -1,50 +1,52 @@
-import { Component } from 'react';
+import { useState } from 'react';
 import { Form, Input, Button, Label } from './ContactForm.styled';
 
-export class ContactForm extends Component {
-  state = {
+export const ContactForm = ({ onSubmit }) => {
+  const [stateForm, setStateForm] = useState({
     name: '',
     number: '',
+  });
+
+  const handleChange = e => {
+    const { name, value } = e.currentTarget;
+    setStateForm({
+      ...stateForm,
+      [name]: value,
+    });
   };
 
-  handleChange = e => {
-    this.setState({ [e.currentTarget.name]: e.currentTarget.value });
-  };
-
-  handleSubmit = e => {
+  const handleSubmit = e => {
     e.preventDefault();
 
-    this.props.onSubmit(this.state);
-    this.setState({ name: '', number: '' });
+    onSubmit(stateForm);
+    setStateForm({ name: '', number: '' });
   };
-
-  render() {
-    return (
-      <Form onSubmit={this.handleSubmit}>
-        <Label htmlFor="">
-          Name
-          <Input
-            type="text"
-            name="name"
-            required
-            value={this.state.name}
-            onChange={this.handleChange}
-          />
-        </Label>
-        <Label htmlFor="">
-          Number
-          <Input
-            type="tel"
-            name="number"
-            required
-            value={this.state.number}
-            onChange={this.handleChange}
-          />
-        </Label>
-        <Button type="submit">Add Contact</Button>
-      </Form>
-    );
-  }
-}
+  const { name, number } = stateForm;
+  return (
+    <Form onSubmit={handleSubmit}>
+      <Label htmlFor="name">
+        Name
+        <Input
+          type="text"
+          name="name"
+          required
+          value={name}
+          onChange={handleChange}
+        />
+      </Label>
+      <Label htmlFor="">
+        Number
+        <Input
+          type="tel"
+          name="number"
+          required
+          value={number}
+          onChange={handleChange}
+        />
+      </Label>
+      <Button type="submit">Add Contact</Button>
+    </Form>
+  );
+};
 
 export default ContactForm;
