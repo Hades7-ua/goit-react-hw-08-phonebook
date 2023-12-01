@@ -5,36 +5,17 @@ import Filter from './Filter/FilterContacts';
 import ContactList from './ContactsList/ContactList';
 import { AppHeader, AppContent, AppContainer } from './App.styled';
 
+const LOCAL_STORAGE_KEY = 'contacts';
+
 export const App = () => {
-  const [contacts, setContacts] = useState([]);
+  const [contacts, setContacts] = useState(
+    () => JSON.parse(localStorage.getItem(LOCAL_STORAGE_KEY)) || []
+  );
   const [filter, setFilter] = useState('');
 
   useEffect(() => {
-    const getContacts = localStorage.getItem('contacts');
-    const parsedContacts = JSON.parse(getContacts);
-    if (parsedContacts) {
-      setContacts(parsedContacts);
-    }
-  }, []);
-
-  // componentDidMount() {
-  //   const getContacts = localStorage.getItem('contacts');
-  //   const parsedContacts = JSON.parse(getContacts);
-  //   if (parsedContacts) {
-  //     this.setState({ contacts: parsedContacts });
-  //   }
-  //   console.log(parsedContacts);
-  // }
-
-  useEffect(() => {
-    localStorage.setItem('contacts', JSON.stringify(contacts));
+    localStorage.setItem('LOCAL_STORAGE_KEY', JSON.stringify(contacts));
   }, [contacts]);
-
-  // componentDidUpdate(prevProps, prevState) {
-  //   if (this.state.contacts !== prevState.contacts) {
-  //     localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
-  //   }
-  // }
 
   const addContact = ({ name, number }) => {
     const toLowerCaseName = name.toLowerCase();
