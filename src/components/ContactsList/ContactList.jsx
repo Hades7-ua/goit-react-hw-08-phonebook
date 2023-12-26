@@ -30,7 +30,7 @@ export const ContactList = () => {
         <ContactListItem key={contact.id}>
           <div>
             <ContactName>{contact.name}</ContactName>{' '}
-            <ContactNumber>{contact.number}</ContactNumber>
+            <ContactNumber>{contact.phone}</ContactNumber>
           </div>
           <button onClick={() => handleDelete(contact.id)}>Delete</button>
         </ContactListItem>
