@@ -17,7 +17,7 @@ export const App = () => {
   return (
     <AppContainer>
       {loading && !error && (
-        <b>The request is being processed, it will take a few seconds...</b>
+        <b>The request is being processed, it will take a few seconds.....</b>
       )}
       <AppHeader>Phonebook</AppHeader>
       <AppContent>
