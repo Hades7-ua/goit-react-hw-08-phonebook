@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { fetchContacts } from './operations';
+import { fetchContacts, addContact, deleteContact } from './operations';
 
 const contactsSlice = createSlice({
   name: 'contacts',
@@ -13,52 +13,34 @@ const contactsSlice = createSlice({
     filtersContacts: (state, action) => {
       state.filter = action.payload;
     },
-
-    fetchingInProgress(state) {
-      state.isLoading = true;
-    },
-    fetchingSuccess(state, action) {
-      state.isLoading = false;
-      state.error = null;
-      state.items = action.payload;
-    },
-    fetchingError(state, action) {
-      state.isLoading = false;
-      state.error = action.payload;
-    },
-
-    addContact: (state, action) => {
-      state.items.push(action.payload);
-    },
-    deleteContact: (state, action) => {
-      state.items = state.items.filter(
-        contact => contact.id !== action.payload
-      );
-    },
   },
   extraReducers: builder => {
     builder
-      .addCase(fetchContacts.pending, (state, action) => {
+      .addCase(fetchContacts.pending, state => {
         state.isLoading = true;
       })
       .addCase(fetchContacts.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.error = null;
         state.items = action.payload;
       })
       .addCase(fetchContacts.rejected, (state, action) => {
         state.isLoading = false;
+        state.error = action.error.message;
+      })
+      .addCase(addContact.fulfilled, (state, action) => {
+        state.items.push(action.payload);
+      })
+      .addCase(addContact.rejected, (state, action) => {
+        state.isLoading = false;
         state.error = action.payload;
+      })
+      .addCase(deleteContact.fulfilled, (state, action) => {
+        state.items = state.items.filter(
+          contact => contact.id !== action.payload
+        );
       });
   },
 });
 
-export const {
-  addContact,
-  deleteContact,
-  filtersContacts,
-  fetchingInProgress,
-  fetchingSuccess,
-  fetchingError,
-} = contactsSlice.actions;
+export const { filtersContacts } = contactsSlice.actions;
 export const contactsReducer = contactsSlice.reducer;

@@ -7,7 +7,7 @@ import {
   ContactNumber,
 } from './ContactList.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteContact } from '../../redux/contactsSlice';
+import { deleteContact } from '../../redux/operations';
 import { selectContactsList, selectFilters } from '../../redux/selectors';
 
 export const ContactList = () => {
@@ -21,8 +21,8 @@ export const ContactList = () => {
   };
 
   const filteredContacts = getFilteredContacts();
-  const handleDelete = id => {
-    dispatch(deleteContact(id));
+  const handleDelete = contactId => {
+    dispatch(deleteContact(contactId));
   };
   return (
     <ContactListWrapper>
