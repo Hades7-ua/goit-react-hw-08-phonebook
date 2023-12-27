@@ -3,9 +3,9 @@ import Filter from './Filter/FilterContacts';
 import ContactList from './ContactsList/ContactList';
 import { AppHeader, AppContent, AppContainer } from './App.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchContacts } from '../redux/operations';
+import { fetchContacts } from '../redux/contacts/operations';
 import { useEffect } from 'react';
-import { selectIsLoading, selectError } from '../redux/selectors';
+import { selectIsLoading, selectError } from '../redux/contacts/selectors';
 
 export const App = () => {
   const dispatch = useDispatch();
