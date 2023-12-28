@@ -13,7 +13,9 @@ import { selectContactsList, selectFilters } from '../../redux/contacts/selector
 export const ContactList = () => {
   const dispatch = useDispatch();
   const contacts = useSelector(selectContactsList);
+ 
   const filter = useSelector(selectFilters);
+  console.log(filter)
   const getFilteredContacts = () => {
     return contacts.filter(contact =>
       contact.name.toLowerCase().includes(filter.toLowerCase())
@@ -30,7 +32,7 @@ export const ContactList = () => {
         <ContactListItem key={contact.id}>
           <div>
             <ContactName>{contact.name}</ContactName>{' '}
-            <ContactNumber>{contact.phone}</ContactNumber>
+            <ContactNumber>{contact.number}</ContactNumber>
           </div>
           <button onClick={() => handleDelete(contact.id)}>Delete</button>
         </ContactListItem>
