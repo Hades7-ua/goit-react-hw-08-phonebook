@@ -3,14 +3,21 @@ import styled from 'styled-components';
 export const ContactListWrapper = styled.ul`
   list-style-type: none;
   padding: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 0 auto;
 `;
 
 export const ContactListItem = styled.li`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  margin-top: 50px;
   padding: 10px;
+  width: 480px;
   background-color: #f5f5f5;
   border: 1px solid #ddd;
   border-radius: 5px;
@@ -36,4 +43,3 @@ export const ContactName = styled.span`
 export const ContactNumber = styled.span`
   color: #666;
 `;
-

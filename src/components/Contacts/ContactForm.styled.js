@@ -1,8 +1,15 @@
 import styled from 'styled-components';
 
+export const FormContact = styled.div`
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+`;
+
 export const Form = styled.form`
   max-width: 300px;
-  margin: 0 auto;
+  margin: 50px auto;
 `;
 
 export const Label = styled.label`
@@ -20,17 +27,15 @@ export const Input = styled.input`
 `;
 
 export const Button = styled.button`
-  display: block;
-  width: 100%;
-  padding: 10px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.2s ease;
+background-color: black;
+color: white;
+padding: 10px;
+width: 100%;
+border: none;
+border-radius: 3px;
+cursor: pointer;
 
-  &:hover {
-    background-color: #0056b3;
-  }
+&:hover {
+  color: orange;
+}
 `;

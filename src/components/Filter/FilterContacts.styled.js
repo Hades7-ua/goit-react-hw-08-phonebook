@@ -1,23 +1,18 @@
-import styled from 'styled-components';
+import styled from '@emotion/styled';
 
-export const FilterWrapper = styled.label`
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 20px;
-
-  input {
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-  }
-
-  span {
-    margin-top: 4px;
-  }
+export const FilterWrapper = styled.div`
+  text-align: center;
 `;
 
-export const FilterHeader = styled.h2`
-  font-size: 20px;
-  margin-bottom: 20px;
-  color: #333;
+export const FilterHeader = styled.label`
+  display: block;
+  margin-top: 50px;
+  font-weight: bold;
+
+  input {
+    width: 600px;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+  }
 `;

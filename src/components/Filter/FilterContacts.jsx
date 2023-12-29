@@ -12,13 +12,15 @@ export const FilterContacts = () => {
 
   return (
     <FilterWrapper>
-      <FilterHeader>Find by name</FilterHeader>{' '}
-      <input
-        type="text"
-        name="filter"
-        value={filter}
-        onChange={handleFilterChange}
-      />
+      <FilterHeader>
+        <input
+          type="text"
+          name="filter"
+          placeholder="Search your contacts....."
+          value={filter}
+          onChange={handleFilterChange}
+        />
+      </FilterHeader>
     </FilterWrapper>
   );
 };
