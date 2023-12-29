@@ -2,7 +2,7 @@ import styled from '@emotion/styled';
 
 export const HomeContainer = styled.div`
   text-align: center;
-  background: url('https://i.ebayimg.com/images/g/AkcAAOSwntFj1B77/s-l1600.jpg')
+  background: url('https://i.ebayimg.com/images/g/aRUAAOSwWL5itiEf/s-l1600.jpg')
     no-repeat center center fixed;
   background-size: cover;
   height: 100vh;
